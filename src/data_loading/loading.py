@@ -71,7 +71,7 @@ def process_image(image, view, best_center):
     """
     cropped_image, _ = augmentations.random_augmentation_best_center(
         image=image,
-        input_size=(800, 500) # (1400, 875),  # (2944, 1920),
+        input_size=(800, 500), # (1400, 875),  # (2944, 1920),
         random_number_generator=np.random.RandomState(0),
         best_center=best_center,
         view=view
