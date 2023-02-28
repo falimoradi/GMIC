@@ -310,6 +310,26 @@ def crop_mammogram_one_image(scan, input_file_path, output_file_path, num_iterat
     except Exception as error:
         print(image.shape)
         print(input_file_path, "\n\tFailed to crop image because image is invalid.", str(error))
+        
+        top, bottom, left, right = (0, image.shape[0], 0, image.shape[1])
+        cropping_info = ((0, image.shape[0], 0, image.shape[1]), 
+                        ((image.shape[0] // 2, image.shape[0] // 2 + 1), image.shape[1]-1), 
+                        (image.shape[0] - 1, (image.shape[1] // 2, image.shape[1] // 2 + 1)), 
+                        0)
+        
+        
+
+        target_parent_dir = os.path.split(output_file_path)[0]
+        if not os.path.exists(target_parent_dir):
+            os.makedirs(target_parent_dir)
+
+        try:
+            saving_images.save_image_as_png(image[top:bottom, left:right], output_file_path)
+        except Exception as error:
+            print(input_file_path, "\n\tError while saving image.", str(error))
+
+        return cropping_info
+
    
     else:
 
