@@ -308,6 +308,7 @@ def crop_mammogram_one_image(scan, input_file_path, output_file_path, num_iterat
             1 / 3
         )
     except Exception as error:
+        print(image.shape)
         print(input_file_path, "\n\tFailed to crop image because image is invalid.", str(error))
     else:
 
