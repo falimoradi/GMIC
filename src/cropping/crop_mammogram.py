@@ -311,7 +311,7 @@ def crop_mammogram_one_image(scan, input_file_path, output_file_path, num_iterat
 #         print(image.shape)
 #         print(input_file_path, "\n\tFailed to crop image because image is invalid.", str(error))
     if True:
-        try:
+#         try:
         # error detection using erosion. Also get cropping information for this image.
         cropping_info = crop_img_from_largest_connected(
             image,
