@@ -211,21 +211,11 @@ def generate_mask_uplft(input_image, window_shape, upper_left_points, gpu_number
     :param upper_left_points:
     """
     
-    print('****************', upper_left_points[:,:,0].is_cuda)
+    print('****************', window_shape.is_cuda)
     
     N, C, H, W = input_image.size()
     window_h, window_w = window_shape
-    # get the positions of masks
-    
-    
-    if gpu_number is not None:
-        device = torch.device("cuda:{}".format(gpu_number))
-        upper_left_points = upper_left_points.cuda().to(device)
-        window_h = window_h.cuda().to(device)
-        window_w = window_w.cuda().to(device)
-        print('****************', upper_left_points[:,:,0].is_cuda)
-    
-    
+    # get the positions of masks  
     mask_x_min = upper_left_points[:,:,0]
     mask_x_max = upper_left_points[:,:,0] + window_h
     mask_y_min = upper_left_points[:,:,1]
@@ -237,8 +227,7 @@ def generate_mask_uplft(input_image, window_shape, upper_left_points, gpu_number
         device = torch.device("cuda:{}".format(gpu_number))
         mask_x = mask_x.cuda().to(device)
         mask_y = mask_y.cuda().to(device)
-    print('****************', upper_left_points[:,:,0].is_cuda)
-    print('****************', mask_x.is_cuda)
+
     x_gt_min = mask_x.float() >= mask_x_min.unsqueeze(-1).unsqueeze(-1).float()
     x_ls_max = mask_x.float() < mask_x_max.unsqueeze(-1).unsqueeze(-1).float()
     y_gt_min = mask_y.float() >= mask_y_min.unsqueeze(-1).unsqueeze(-1).float()
