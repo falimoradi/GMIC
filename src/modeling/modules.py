@@ -346,6 +346,7 @@ class RetrieveROIModule(AbstractMILUnit):
         self.num_crops_per_class = parameters["K"]
         self.crop_shape = parameters["crop_shape"]
         self.gpu_number = None if parameters["device_type"]!="gpu" else parameters["gpu_number"]
+        print(self.gpu_number)
 
     def forward(self, x_original, cam_size, h_small):
         """
