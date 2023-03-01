@@ -220,7 +220,7 @@ def generate_mask_uplft(input_image, window_shape, upper_left_points, gpu_number
         upper_left_points = upper_left_points.cuda().to(device)
         window_h = window_h.cuda().to(device)
         window_w = window_w.cuda().to(device)
-        print(upper_left_points[:,:,0].is_cuda)
+        print('****************', upper_left_points[:,:,0].is_cuda)
     
     
     mask_x_min = upper_left_points[:,:,0]
