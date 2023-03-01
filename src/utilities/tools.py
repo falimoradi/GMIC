@@ -234,6 +234,8 @@ def generate_mask_uplft(input_image, window_shape, upper_left_points, gpu_number
         device = torch.device("cuda:{}".format(gpu_number))
         mask_x = mask_x.cuda().to(device)
         mask_y = mask_y.cuda().to(device)
+    print('****************', upper_left_points[:,:,0].is_cuda)
+    print('****************', mask_x.is_cuda)
     x_gt_min = mask_x.float() >= mask_x_min.unsqueeze(-1).unsqueeze(-1).float()
     x_ls_max = mask_x.float() < mask_x_max.unsqueeze(-1).unsqueeze(-1).float()
     y_gt_min = mask_y.float() >= mask_y_min.unsqueeze(-1).unsqueeze(-1).float()
