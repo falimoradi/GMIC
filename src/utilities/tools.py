@@ -211,7 +211,8 @@ def generate_mask_uplft(input_image, window_shape, upper_left_points, gpu_number
     :param upper_left_points:
     """
     
-    print('****************', window_shape.is_cuda)
+    print('****************', input_image.is_cuda)
+    print('****************', window_shape[0].is_cuda)
     
     N, C, H, W = input_image.size()
     window_h, window_w = window_shape
